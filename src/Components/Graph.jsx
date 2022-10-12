@@ -33,7 +33,8 @@ export default function Graph() {
               
                 <Doughnut {...config}/>
                   
-                <h3 className="mb-4 font-bold title">Total
+                <h3 className="mb-4 title ">
+                  <span className='mx-4'>Total</span>
                 <span className='block text-3xl text-emerald-400 '>$4000</span>
                 </h3>
                 
