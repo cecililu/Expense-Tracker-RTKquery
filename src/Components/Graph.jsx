@@ -1,6 +1,7 @@
 import { Chart ,ArcElement} from 'chart.js';
 import React from 'react'
 import { Doughnut } from 'react-chartjs-2'
+import Label from './Label';
 
 Chart.register(ArcElement)
 
@@ -37,7 +38,8 @@ export default function Graph() {
                  <span className='block text-3xl text-emerald-400 '>$4000</span>
             </div>
             <div className="flex flex-col py-10 gap-4">
-        </div>
+                <Label/>
+            </div>
         </div> 
     </div>
   )
