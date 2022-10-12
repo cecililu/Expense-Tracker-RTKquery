@@ -14,10 +14,11 @@
  background-color: white;
 }
 .chart .title{
+   width: 70px;
   position: absolute;
   left: 0;
   right: 0;
   top:40%;
   margin-left: auto;
-  color: blue;
+  margin-right: auto;
 }
