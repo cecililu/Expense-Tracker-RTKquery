@@ -1,16 +1,20 @@
 import React from 'react'
-
+import {useForm } from 'react-hook-form'
 export default function Form() {
+    const  { register,handleSubmit,resetFeild }=useForm()
+    const onSubmit=(data)=>{
+        console.log(data)
+    }
   return (
     <div className='form max-w-sm mx-auto w-96'>
 
         <h1 className="font-bold pb-4">Transactions</h1>
-        <form id='form' action="">
+        <form id='form' onSubmit={handleSubmit(onSubmit)}>
             <div className="grid gap-4">
                 <div className="input-group">
-                    <input type="text" placeholder='Salary,House,Rent' className='form-input'/>
+                    <input type="text" {...register('name')} placeholder='Salary,House,Rent' className='form-input'/>
                 </div>
-                <select name="" id="" className="form-input">
+                <select name="" id="" className="form-input"  {...register('type')}>
                     <option value="investment" defaultValue >Investment</option>
                     <option value="expense">Expense</option>
                     <option value="saving">Saving</option>
@@ -19,7 +23,7 @@ export default function Form() {
                 </select>
 
                 <div className="input-group">
-                <input type="text" placeholder='Amount' className='form-input'/>
+                <input type="text" placeholder='Amount' className='form-input'  {...register('amount')}/>
                 </div>
                 <div className="submit-btn">
                     <button className='border py-2 text-white bg-indigo-500 w-full'> Add</button>
