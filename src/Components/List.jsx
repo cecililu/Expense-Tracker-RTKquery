@@ -1,4 +1,5 @@
 import React from 'react'
+import 'boxicons'
 const obj=[
     {
     type:"Savings",
@@ -35,6 +36,7 @@ function Transactions({category}){
     if(!category) return null
     return (
         <div className="item flex justify-center bg-gray-50 py-2 rounded-r" style={{borderRight:`8px solid ${category.color?? 'red'}`}}>
+            <button className='px-3'><box-icon size='15px'name='trash' color={category.color?? 'red'}/></button>
             <span className='block w-full bg-gray-50'>{category.type}</span>
         </div>
     )
