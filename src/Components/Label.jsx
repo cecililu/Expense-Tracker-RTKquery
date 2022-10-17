@@ -1,30 +1,23 @@
 import React from 'react'
+import {default as api} from '../store/apiSlice'
 
-const obj=[
-  {
-  type:"Savings",
-  color: "red",
-  percentage:50,
-  },
- {
-  type:"Expense",
-  color: "blue",
-  percentage:25,
-
- },
- {
-   type:"Loan",
-   color: "yellow",
-  percentage:"25", 
- }
-]
 
 
 export default function Label() {
   
+  const{data,isFetching,isError,isSuccess} = api.useGetlabelQuery()
+  let Transactions;
+  if (isFetching){
+    Transactions="Loading..."
+  }
+  else if(isSuccess){
+   Transactions= data.map((item)=><LabelComponent key={item.id} type={item.type} color={item.color} percentage={item.percentage}/>)
+  }
+  else if (isError){
+ Transactions="Error! could not get Transactiions"
+  }
   return (
-    <>{
-    obj.map((item)=><LabelComponent type={item.type} color={item.color} percentage={item.percentage}/>)
+    <>{Transactions
   }
   </>
   )
