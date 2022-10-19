@@ -1,11 +1,11 @@
 import React from 'react'
-import {default as api} from '../store/apiSlice'
+import apiSlice from '../store/apiSlice'
 
 
 
 export default function Label() {
   
-  const{data,isFetching,isError,isSuccess} = api.useGetlabelQuery()
+  const{data,isFetching,isError,isSuccess} = apiSlice.useGetlabelQuery()
   let Transactions;
   if (isFetching){
     Transactions="Loading..."

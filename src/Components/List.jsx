@@ -1,37 +1,40 @@
 import React from 'react'
-import 'boxicons'
+import "boxicons"
 
-import {default as api} from '../store/apiSlice'
+import apiSlice from '../store/apiSlice'
 
 export default function List() {
   
-  const{ data,isFetching,isError,isSuccess } = api.useGetlabelQuery()
+  const{ data,isFetching,isError,isSuccess } = apiSlice.useGetlabelQuery()
   
-  let Transactions;
+  let Transaction;
+  
   if (isFetching){
-    Transactions="Loading..."
+    Transaction="Loading"
   }
   else if(isSuccess){
-   Transactions= data.map((v,i)=><Transactions key={v.id} category={v}/>)
+  
+   Transaction=data.map((v,i)=><Transactions key={v.id} category={v}/>)
   }
   else if (isError){
-  Transactions="Error! could not get Transactiions"
+  Transaction="<h3>Error</h3>"
   }
 
 
   return (
     <div className='flex flex-col py-6 gap-3'>
         <h1 className='py-4 text-xl font-bold'>History</h1>
-          {Transactions} 
+          {Transaction}
+          
     </div>
   )
 }
 
-function Transactions({category}){
+export function Transactions({category}){
     if(!category) return null
     return (
         <div className="item flex justify-center bg-gray-50 py-2 rounded-r" style={{borderRight:`8px solid ${category.color?? 'red'}`}}>
-            <button className='px-3'><box-icon size='15px'name='trash' color={category.color?? 'red'}/></button>
+            <button className='px-3'><box-icon type='trash'></box-icon></button>
             <span className='block w-full bg-gray-50'>{category.type}</span>
         </div>
     )
