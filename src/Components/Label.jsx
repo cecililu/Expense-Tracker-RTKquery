@@ -1,4 +1,5 @@
 import React from 'react'
+import { getLabels, getSum } from '../helper/helper';
 import apiSlice from '../store/apiSlice'
 
 
@@ -6,12 +7,13 @@ import apiSlice from '../store/apiSlice'
 export default function Label() {
   
   const{data,isFetching,isError,isSuccess} = apiSlice.useGetlabelQuery()
+  
   let Transactions;
   if (isFetching){
     Transactions="Loading..."
   }
   else if(isSuccess){
-   Transactions= data.map((item)=><LabelComponent key={item.id} type={item.type} color={item.color} percentage={item.percentage}/>)
+   Transactions=getLabels(data).map((item)=><LabelComponent key={item.id} type={item.type} color={item.color} percentage={item.percentage}/>)
   }
   else if (isError){
  Transactions="Error! could not get Transactiions"
