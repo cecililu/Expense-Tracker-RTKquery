@@ -41,7 +41,7 @@ export function Transactions({category,handler}){
     return (
         <div className="item flex justify-center bg-gray-50 py-2 rounded-r" style={{borderRight:`8px solid ${category.color?? 'red'}`}}>
             <button  onClick={handler} className='px-3'><box-icon data-id={category._id ?? "sa"} type='trash'></box-icon></button>
-            <span className='block w-full bg-gray-50'>{category.type}</span>
+            <span className='block w-full bg-gray-50'>{category.name}</span>
         </div>
     )
 }

@@ -27,7 +27,7 @@ export default function Graph() {
   return (
     <div className='flex justify-content max-w-xs mx-auto'>
        <div className="item">
-            <div className="chart relative">
+            <div className="chart relative m-6">
               
                 {graphData}
                   
