@@ -5,9 +5,10 @@ export function getSum(transaction,type){
             .groupBy('type')
             .map((obj,keys)=>{
                  if(!type) return _.sumBy(obj,'amount')
-                 return {"type":keys,
-                'color':obj[0].color,
-                 'total':_.sumBy (obj,'amount')
+                 return {
+                  "type":keys,
+                  "color":obj[0].color,
+                  "total":_.sumBy (obj,'amount')
             }
 
             })
@@ -22,4 +23,29 @@ export function getLabels(transaction ){
        .map(obj=>_.assign(obj,{percent:(100*obj.total)/total}))
        .value()
  return percent
+}
+
+export function chart(transaction){
+  let bg=_.map(transaction,a=>a.color)
+  bg=_.uniq(bg)
+  console.log(bg)
+  let dataValue=getSum(transaction)
+  console.log(dataValue)
+  const config={
+    data:{
+      datasets:[{
+  
+            data: dataValue,
+            backgroundColor:bg,
+            hoverOffset:4,
+            borderRadius:3
+            
+          }]
+      },
+      options:{
+         cutout:115,
+         
+      } 
+  }
+  return config
 }

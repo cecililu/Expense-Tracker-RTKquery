@@ -1,37 +1,33 @@
 import { Chart ,ArcElement} from 'chart.js';
 import React from 'react'
 import { Doughnut } from 'react-chartjs-2'
+import { chart } from '../helper/helper';
+import apiSlice from '../store/apiSlice';
 import Label from './Label';
 
-Chart.register(ArcElement)
-
-  
-  
-const config={
-  data:{
-    datasets:[{
-
-          data: [133,333,111],
-          backgroundColor:['red','blue','yellow'
-        ],
-          hoverOffset:4,
-          borderRadius:3
-          
-        }]
-    },
-    options:{
-       cutout:115,
-       
-    } 
-}
-
+Chart.register(ArcElement)  
 export default function Graph() {
+ 
+  const{data,isFetching,isError,isSuccess} = apiSlice.useGetlabelQuery()
+  
+  let graphData;
+  if (isFetching){
+    graphData="Loading..."
+  }
+  else if(isSuccess){
+    
+  graphData = <Doughnut {...chart(data)}/> 
+  }
+  else if (isError){
+    graphData="Error! could not get Transactiions"
+  }
+
   return (
     <div className='flex justify-content max-w-xs mx-auto'>
        <div className="item">
             <div className="chart relative">
               
-                <Doughnut {...config}/>
+                {graphData}
                   
                 <h3 className="mb-4 title ">
                   <span className='mx-4'>Total</span>
