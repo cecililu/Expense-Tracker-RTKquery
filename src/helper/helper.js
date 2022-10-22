@@ -22,7 +22,7 @@ export function getLabels(transaction ){
    let percent=_(amountSum)
        .map(obj=>_.assign(obj,{percent:(100*obj.total)/total}))
        .value()
- return percent
+    return percent
 }
 
 export function chart(transaction){
@@ -48,4 +48,9 @@ export function chart(transaction){
       } 
   }
   return config
+}
+
+
+export function getTotal(transaction){
+   return _.sum(getSum(transaction))
 }
